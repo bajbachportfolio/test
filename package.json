@@ -1,0 +1,113 @@
+{
+	"author": "Glivera-team",
+	"name": "glivera-parcel-template",
+	"version": "1.0.0",
+	"description": "Web Develpoment template - parcel builder, default layout, snippets",
+	"directories": {
+		"src": "src"
+	},
+	"scripts": {
+		"dev": "npm run start",
+		"start": "node dev-scripts/prebuild.mjs && parcel serve src/pug/pages/*.pug --open --port=8080",
+		"build": "node dev-scripts/clear-cache.mjs && parcel build src/pug/pages/*.pug --dist-dir=build --no-source-maps --no-cache --no-content-hash --public-url=./ && node dev-scripts/postbuild.mjs",
+		"staging": "node dev-scripts/prebuild.mjs && cross-env STAGING=true npm run build && node dev-scripts/postbuild.mjs",
+		"debug": "node dev-scripts/prebuild.mjs && parcel serve src/pug/pages/*.pug --no-cache --port=8080",
+		"clear": "node dev-scripts/clear-cache.mjs",
+		"prepare": "npx husky install",
+		"js-lint": "eslint ./src --config",
+		"pretty": "npx prettier --check .",
+		"pretty:fix": "npx prettier --write .",
+		"lint": "npx lint-staged --quiet"
+	},
+	"dependencies": {
+		"gsap": "^3.10.4",
+		"ismobilejs": "^1.1.1"
+	},
+	"devDependencies": {
+		"@parcel/config-default": "^2.9.3",
+		"@parcel/packager-xml": "^2.9.3",
+		"@parcel/transformer-pug": "^2.9.3",
+		"@parcel/transformer-sass": "^2.9.3",
+		"@parcel/transformer-xml": "^2.9.3",
+		"cross-env": "^7.0.3",
+		"eslint": "^8.4.1",
+		"eslint-config-airbnb": "^19.0.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-import": "^2.25.3",
+		"eslint-plugin-jsx-a11y": "^6.5.1",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-react": "^7.27.0",
+		"eslint-plugin-react-hooks": "^4.3.0",
+		"husky": "^8.0.0",
+		"jsdom": "^23.0.1",
+		"lint-staged": "^13.1.0",
+		"parcel": "^2.9.3",
+		"parcel-bundler": "^1.12.5",
+		"parcel-namer-sorter": "^0.1.3",
+		"parcel-plugin-ignore-assets": "^1.0.0",
+		"parcel-resolver-exclude-assets": "^2.0.1",
+		"parcel-transformer-html-datasrc": "^1.3.3",
+		"prettier": "2.8.3",
+		"regenerator-runtime": "^0.13.9",
+		"sharp": "^0.31.3"
+	},
+	"alias": {
+		"ScssComponents": "/src/scss/components",
+		"ScssHelpers": "/src/scss/helpers",
+		"images": "/src/images",
+		"./images/*": "/src/images/*",
+		"utils": "/src/js/utils",
+		"layout": "/src/js/layout",
+		"components": "/src/js/components",
+		"dev-vendors": "/src/js/dev-vendors",
+		"vendors": "/src/js/vendors"
+	},
+	"resolutions": {},
+	"browserslist": [
+		"last 2 versions",
+		"> 5%"
+	],
+	"engines": {
+		"node": "^12 || >=14"
+	},
+	"keywords": [
+		"parcel",
+		"boilerplate",
+		"template",
+		"setup",
+		"scss",
+		"pug"
+	],
+	"target": "web",
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"**/*.{js,jsx,tsx,ts,scss,css,json,html,pug}": [
+			"prettier --debug-check",
+			"prettier --write",
+			"prettier --check --config .prettierrc"
+		],
+		"*.{js,jsx}": "eslint --quiet"
+	},
+	"parcel-namer-rewrite": {
+		"chain": "@parcel/namer-default",
+		"hashing": "always",
+		"disable": false,
+		"rules": {
+			"(.*(?:favicon|browserconfig).*).(xml|png|ico)": "favicon/$1.{hash}.$2",
+			"(.*).(scss|css|sass)": "css/$1.{hash}.$2",
+			"(.*).(js|mjs|jsx|ts|tsx)": "js/$1.{hash}.$2",
+			"(.*).(woff2|woff|eot|ttf|otf)": "fonts/$1.{hash}.$2",
+			"(^(?!.*(?:favicon)).*).(png|jpg|jpeg|webp|svg|mp4)": "images/$1.{hash}.$2"
+		},
+		"profiles": {
+			"development": {
+				"silent": true
+			},
+			"production": {}
+		}
+	}
+}

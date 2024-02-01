@@ -1,0 +1,147 @@
+.hero {
+	background-color: $yellow;
+
+	@include bp($point_2, min) {
+		padding-top: 3.8rem;
+		padding-bottom: 3.6rem;
+	}
+}
+
+.hero__block {
+	@include bp($point_2, min) {
+		@include flex_block(row, wrap, flex-start, center, center);
+	}
+
+	@include bp($point_3) {
+		@include flex_block(column, wrap, flex-start, center, center);
+	}
+}
+
+.hero__col {
+	&:nth-child(1) {
+		@include bp($point_2, min) {
+			width: 51.4%;
+		}
+
+		@include bp($point_3) {
+			order: 2;
+		}
+	}
+
+	&:nth-child(2) {
+		@include bp($point_2, min) {
+			width: 48.6%;
+		}
+
+		@include bp($point_3) {
+			order: 1;
+
+			margin-bottom: 5.6rem;
+		}
+	}
+
+	@include bp($point_3) {
+		width: 100%;
+	}
+}
+
+.hero__col_in {
+	position: relative;
+
+	.hero__col:nth-child(1) & {
+		@include bp($point_2, min) {
+			padding-right: 3rem;
+		}
+	}
+
+	.hero__col:nth-child(2) & {
+		padding-top: 85%;
+	}
+}
+
+.hero__img {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+}
+
+.hero__subtitle {
+	font-size: 1.4rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: $white;
+
+	&:not(:last-child) {
+		margin-bottom: 0.3rem;
+	}
+}
+
+.hero__title {
+	font-weight: 500;
+	color: $blue;
+
+	@include bp($point_2, min) {
+		font-size: 3.8rem;
+	}
+
+	@include bp($point_3) {
+		font-size: 3.4rem;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 3rem;
+	}
+}
+
+.hero_text {
+	line-height: 1.55;
+	color: $blue;
+
+	@include bp($point_2, min) {
+		font-size: 1.8rem;
+	}
+
+	@include bp($point_3) {
+		font-size: 1.6rem;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 4rem;
+	}
+}
+
+.hero__link {
+	@include transition_background;
+	display: inline-block;
+
+	min-height: 4.8rem;
+
+	padding: 0 2rem;
+
+	font-size: 1.5rem;
+	font-weight: 500;
+	line-height: 4.8rem;
+	text-align: center;
+	color: $white;
+
+	background-color: $blue_2;
+	border-radius: 0.4rem;
+
+	@include bp($point_2, min) {
+		min-width: 28.8rem;
+	}
+
+	@include bp($point_5 - 1) {
+		width: 100%;
+	}
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+		background-color: darken($blue_2, 20%);
+	}
+}

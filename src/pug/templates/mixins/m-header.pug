@@ -1,0 +1,55 @@
+-
+	menuData = [
+		{
+			title: 'Програма МУВ',
+			submenu: ['Про програму', 'Умови участі', 'Партнерство', 'Реєстрація']
+		},
+		{
+			title: 'Можливості для молоді',
+		},
+		{
+			title: 'ВМЦ',
+		},
+		{
+			title: 'Блог',
+		},
+		{
+			title: 'Контакти',
+		},
+	]
+
+	languages = ['ukr', 'eng']
+
+	social = ['facebook', 'instagram', 'telegram', 'youtube']
+
+mixin header
+	header.header.js-header
+		.header__in
+			a.header__logo(href="#")
+				img.header__logo_img(src="/src/images/logo.svg", alt="logo")
+			nav.header__nav
+				ul.header__menu
+					each item in menuData
+						li.header__menu_item
+							.header__menu_link_wrap
+								a.header__menu_link(href="#")= item.title
+								if item.submenu
+									.header__menu_link_icon
+										+icon('arrow_down', 'icon--size_mod')
+							if item.submenu
+								ul.header__submenu.js-submenu
+									each subitem in item.submenu
+										li.header__submenu_item
+											a.header__submenu_link(href="#")!= subitem
+				ul.header__lang_list
+					each lang, index in languages
+						li.header__lang_item
+							button.header__lang_btn.js-lang-btn(type='button' aria-label="Language toggle" class=`${index === 0 ? 'header__lang_item--active_state' : null}`)
+								img.header__lang_icon(src=`/src/images/${lang}.svg`, alt="lang")
+				ul.header__social_list
+					each icon in social
+						li.header__social_item
+							a.header__social_link(href="#")
+								+icon(icon, 'icon--size_mod')
+			button.header__menu_trigger.js-header-menu-trigger(type="button" aria-label="Toggle menu")
+				span
