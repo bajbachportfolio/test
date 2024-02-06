@@ -36,10 +36,18 @@
 }
 
 .accordion__item_in {
+	min-height: 5.6rem;
+
 	background-color: $white;
 	border-radius: 1.5rem;
 
-	padding: 1.8rem 5rem 1.6rem 2rem;
+	padding: 1.6rem 5rem 1.6rem 2rem;
+
+	transition: box-shadow 0.3s ease;
+
+	&.accordion__item--active-mod {
+		box-shadow: 0 1px 2px 0 rgba($black, 0.2);
+	}
 }
 
 .accordion__item_head {
@@ -117,9 +125,9 @@
 
 .accordion__item_body {
 	font-size: 1.4rem;
-	line-height: 1.28;
+	line-height: 1.29;
 }
 
 .accordion__item_body_in {
-	padding: 2.2rem 0 0;
+	padding: 2.3rem 0 0.4rem;
 }

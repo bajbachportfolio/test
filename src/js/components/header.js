@@ -27,8 +27,8 @@ const header = () => {
 
 	const headerHeight = $header.clientHeight;
 	const matchMedia = gsap.matchMedia();
-	const MAX_WIDTH_MEDIA = '(max-width: 1023px)';
-	const MIN_WIDTH_MEDIA = '(min-width: 1024px)';
+	const MAX_WIDTH_MEDIA = '(max-width: 1024px)';
+	const MIN_WIDTH_MEDIA = '(min-width: 1025px)';
 
 	$langBtn.forEach(($lang) => {
 		$lang.addEventListener('click', () => {
@@ -87,6 +87,9 @@ const header = () => {
 
 		matchMedia.add(MIN_WIDTH_MEDIA, () => {
 			$menuItem.removeEventListener('click', clickHandler);
+			$submenus.forEach(($item) => {
+				$item.classList.remove(CLASSNAMES.submenuActiveState);
+			});
 		});
 
 		matchMedia.add(MAX_WIDTH_MEDIA, () => {

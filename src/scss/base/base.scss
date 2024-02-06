@@ -10,11 +10,11 @@
 	--height-header: 6.2rem;
 	--height-footer: 10rem;
 
-	@include bp($point_2, min) {
+	@include bp($point_2 + 1, min) {
 		--gl-indent: 5rem;
 	}
 
-	@include bp($point_3) {
+	@include bp($point_2) {
 		--gl-indent: 2rem;
 	}
 }

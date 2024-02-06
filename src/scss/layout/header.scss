@@ -47,7 +47,7 @@
 }
 
 .header__nav {
-	@include bp($point_2, min) {
+	@include bp($point_2 + 1, min) {
 		@include flex_block(row, wrap, flex-start, center, center);
 
 		height: 100%;
@@ -55,7 +55,7 @@
 		margin-left: auto;
 	}
 
-	@include bp($point_3) {
+	@include bp($point_2) {
 		@include flex_block(column, nowrap, flex-start, center, center);
 
 		position: absolute;
@@ -79,19 +79,16 @@
 }
 
 .header__menu {
-	@include bp($point_2, min) {
+	@include bp($point_2 + 1, min) {
 		@include flex_block(row, wrap, flex-start, stretch, stretch);
 
 		height: 100%;
+
 		margin-right: 2rem;
 	}
 
-	@include bp($point_3) {
-		// @include flex_block(column, nowrap, center, flex-start, center);
-	}
-
 	&:not(:last-child) {
-		@include bp($point_3) {
+		@include bp($point_2) {
 			margin-bottom: 3rem;
 		}
 	}
@@ -100,7 +97,7 @@
 .header__menu_item {
 	position: relative;
 
-	@include bp($point_2, min) {
+	@media (hover: hover) {
 		&:hover {
 			& .header__submenu {
 				opacity: 1;
@@ -110,7 +107,7 @@
 	}
 
 	&:not(:last-child) {
-		@include bp($point_3) {
+		@include bp($point_2) {
 			margin-bottom: 2rem;
 		}
 	}
@@ -120,7 +117,7 @@
 	@include flex_block(row, wrap, flex-start, center, center);
 	position: relative;
 
-	@include bp($point_2, min) {
+	@include bp($point_2 + 1, min) {
 		height: 100%;
 	}
 
@@ -135,13 +132,17 @@
 		width: 100%;
 		height: 0.4rem;
 
-		@include bp($point_2, min) {
+		@include bp($point_2 + 1, min) {
 			content: '';
 		}
 	}
 
 	@include bp(1100px, min) {
-		padding: 0 1.54rem;
+		padding: 0 1.51rem;
+
+		.header__menu_item:first-child & {
+			padding-right: 1.9rem;
+		}
 	}
 
 	@include bp(1099px) {
@@ -175,6 +176,10 @@
 			background-color: $blue_2;
 		}
 	}
+
+	@include bp($point_2 + 1, min) {
+		margin-top: 6px;
+	}
 }
 
 .header__menu_link_icon {
@@ -186,6 +191,10 @@
 	color: $gray;
 
 	margin-left: 1rem;
+
+	@include bp($point_2 + 1, min) {
+		margin-top: 4px;
+	}
 
 	.header__menu_link_wrap:hover & {
 		color: $blue;
@@ -202,17 +211,17 @@
 	opacity: 0;
 	pointer-events: none;
 
-	@include bp($point_2, min) {
+	@include bp($point_2 + 1, min) {
 		position: absolute;
 		top: 100%;
-		left: 0;
+		left: 2px;
 
 		min-width: 20rem;
 
-		box-shadow: 0 0 0.4rem 0 rgba($black, 0.05);
+		box-shadow: 0 0.4rem 1.5rem 0 rgba($black, 0.1);
 	}
 
-	@include bp($point_3) {
+	@include bp($point_2) {
 		display: none;
 
 		padding-top: 1rem;
@@ -222,7 +231,7 @@
 		opacity: 1;
 		pointer-events: initial;
 
-		@include bp($point_3) {
+		@include bp($point_2) {
 			display: block;
 		}
 	}
@@ -241,11 +250,11 @@
 	font-size: 1.5rem;
 	color: $gray;
 
-	@include bp($point_2, min) {
-		padding: 1rem 1.4rem;
+	@include bp($point_2 + 1, min) {
+		padding: 1.2rem 1.4rem 0.7rem;
 	}
 
-	@include bp($point_3) {
+	@include bp($point_2) {
 		padding: 0.4rem 2.4rem;
 	}
 
@@ -256,17 +265,23 @@
 
 		background-color: #f5f5f5;
 	}
+
+	.header__submenu_item:last-child & {
+		@include bp($point_2, min) {
+			padding-bottom: 1rem;
+		}
+	}
 }
 
 //----------------------------- LANG LIST
 
 .header__lang_list {
-	@include bp($point_2, min) {
+	@include bp($point_2 + 1, min) {
 		@include flex_block(row, nowrap, flex-start, center, center);
-		margin-right: 3.4rem;
+		margin-right: 3rem;
 	}
 
-	@include bp($point_3) {
+	@include bp($point_2) {
 		@include flex_block(row, nowrap, flex-start, center, center);
 		justify-content: center;
 
@@ -274,7 +289,7 @@
 	}
 
 	&:not(:last-child) {
-		@include bp($point_3) {
+		@include bp($point_2) {
 			margin-bottom: 3rem;
 		}
 	}
@@ -297,7 +312,7 @@
 	}
 
 	&.header__lang_item--active_state {
-		box-shadow: -2px 1px 0.3rem 0 rgba($black, 0.15);
+		box-shadow: 0 1px 0.4rem 0 rgba($black, 0.15);
 		background-color: $white;
 	}
 
@@ -320,17 +335,17 @@
 .header__social_list {
 	gap: 2rem;
 
-	@include bp($point_2, min) {
+	@include bp($point_2 + 1, min) {
 		@include flex_block(row, nowrap, flex-start, center, center);
 	}
 
-	@include bp($point_3) {
+	@include bp($point_2) {
 		@include flex_block(row, nowrap, flex-start, center, center);
 		justify-content: center;
 	}
 
 	&:not(:last-child) {
-		@include bp($point_3) {
+		@include bp($point_2) {
 			margin-bottom: 3rem;
 		}
 	}
@@ -412,11 +427,11 @@
 		}
 	}
 
-	@include bp($point_2, min) {
+	@include bp($point_2 + 1, min) {
 		display: none;
 	}
 
-	@include bp($point_3) {
+	@include bp($point_2 + 1) {
 		display: block;
 	}
 }
